@@ -2,7 +2,7 @@ const Location = require('../models/Location');
 const { UserModel, BucketListItem, Country, State } = require('../models/User');
 const axios = require('axios');
 
-const API_KEY = 'AIzaSyBqLZemtICHovL-DeZWJexVstGv91hjCwI';
+const API_KEY = 'api_key';
 
 async function updateLocation(req, res) {
 
