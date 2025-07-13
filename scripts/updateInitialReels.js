@@ -17,7 +17,7 @@ async function getEmbeddingLinks() {
       // Extract the embeddingLink values
       const links = embeddingLinks.map(item => item.embeddingLink);
   
-        const youtubeApiKey = 'AIzaSyBNx9nQY2nMg8GA9Q7K4xMcwpYQ68Gwc3A'; // Replace with your API key
+        const youtubeApiKey = 'api_key'; // Replace with your API key
         const fetchedItems = [];
 
         for (const link of links) {
