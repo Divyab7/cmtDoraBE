@@ -1,0 +1,19 @@
+stages:
+  - deploy
+
+deploy_to_azure:
+  stage: deploy
+  only:
+    - main  # Change to your branch name if different
+  before_script:
+    - 'which ssh-agent || (apt-get update -y && apt-get install openssh-client -y)'
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$DEPLOY_KEY" | sed 's/\r$//' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H 4.240.109.11 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploying to Azure VM..."
+    - ssh -o StrictHostKeyChecking=no aakash@4.240.109.11 'cd CMT-BackEnd && git remote set-url origin git@gitlab.com:clonemytrips/CMT-BackEnd.git && git pull && npm install && pm2 restart all'

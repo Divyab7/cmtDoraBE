@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../Desktop/CMT-FrontEnd"
+		},
+		{
+			"path": "."
+		}
+	],
+  "settings": {
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "i18n-ally.keystyle": "nested",
+	"i18n-ally.disabled": false,
+	"i18n-ally.localesPaths": [
+		"src/lib/i18n",
+		"ios/Pods/RCT-Folly/folly/lang",
+		"ios/Pods/boost/boost/predef/language"
+	]
+  }
+}

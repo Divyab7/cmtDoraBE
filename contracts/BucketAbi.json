@@ -1,0 +1,253 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "user",
+				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "nftAddress",
+				"type": "string"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "bucketType",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "place",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct NFTBucketLinker.Bucket[]",
+				"name": "selectedBuckets",
+				"type": "tuple[]"
+			}
+		],
+		"name": "NFTLinked",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "follower",
+				"type": "string"
+			},
+			{
+				"indexed": true,
+				"internalType": "string",
+				"name": "followee",
+				"type": "string"
+			}
+		],
+		"name": "UserFollowed",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "follower",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "followee",
+				"type": "string"
+			}
+		],
+		"name": "doesUserFollow",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "follower",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "followee",
+				"type": "string"
+			}
+		],
+		"name": "followUser",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "user",
+				"type": "string"
+			}
+		],
+		"name": "getFollowedUsers",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "user",
+				"type": "string"
+			}
+		],
+		"name": "getLinkedNFTsAndBuckets",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "nftAddress",
+						"type": "string"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "bucketType",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "place",
+								"type": "string"
+							}
+						],
+						"internalType": "struct NFTBucketLinker.Bucket[]",
+						"name": "selectedBuckets",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct NFTBucketLinker.UserNFTLink[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "user",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "nftAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string[]",
+				"name": "bucketTypes",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "names",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "places",
+				"type": "string[]"
+			}
+		],
+		"name": "linkNFTToBuckets",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userFollows",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "userLinks",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "nftAddress",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
