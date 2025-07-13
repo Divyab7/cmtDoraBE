@@ -11,15 +11,16 @@ This project aims to revolutionize travel planning and inspiration by integratin
 - NFT minting on Hedera to ensure content provenance
 - Smart contract-powered bucket list tracking for users
 
-Demo 1 - https://www.youtube.com/watch?v=iwBBfyQYNrs
-Demo 2 - https://www.youtube.com/watch?v=pBk-WWpcIQg
-Explanation Video - https://www.youtube.com/watch?v=qKS1rFle1FQ
-Contract Address - 0.0.5138175
-Topic Id - 0.0.5138179
-Operator Address - 0.0.4866116
+- Demo 1 - https://www.youtube.com/watch?v=iwBBfyQYNrs
+- Demo 2 - https://www.youtube.com/watch?v=pBk-WWpcIQg
+- Explanation Video - https://www.youtube.com/watch?v=qKS1rFle1FQ
+- Contract Address - 0.0.5138175
+- Topic Id - 0.0.5138179
+- Operator Address - 0.0.4866116
+
 App Links
-Android - https://play.google.com/store/apps/details?id=com.flyingwands.clonemytrips
-iOS - https://apps.apple.com/in/app/clonemytrips/id6738989744
+- Android - https://play.google.com/store/apps/details?id=com.flyingwands.clonemytrips
+- iOS - https://apps.apple.com/in/app/clonemytrips/id6738989744
 
 ---
 
