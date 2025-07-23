@@ -14,9 +14,11 @@ This project aims to revolutionize travel planning and inspiration by integratin
 - Demo 1 - https://www.youtube.com/watch?v=iwBBfyQYNrs
 - Demo 2 - https://www.youtube.com/watch?v=pBk-WWpcIQg
 - Explanation Video - https://www.youtube.com/watch?v=qKS1rFle1FQ
-- Contract Address - 0.0.5138175
-- Topic Id - 0.0.5138179
-- Operator Address - 0.0.4866116
+- Mainnet Deploy - https://www.youtube.com/watch?v=9VwJb-MrkeI
+
+Mainnet
+- Contract Address - 0.0.9423343 
+- Operator Address - 0.0.9223604
 
 App Links
 - Android - https://play.google.com/store/apps/details?id=com.flyingwands.clonemytrips

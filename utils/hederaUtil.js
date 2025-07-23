@@ -14,12 +14,12 @@ async function createHederaAccount(user) {
       console.error("Hedera operator credentials missing in .env");
       return user;
     }
-    const client = Client.forTestnet().setOperator(operatorId, operatorKey);
+    const client = Client.forMainnet().setOperator(operatorId, operatorKey);
     const newPrivateKey = PrivateKey.generateED25519();
     const newPublicKey = newPrivateKey.publicKey;
     const tx = await new AccountCreateTransaction()
       .setKey(newPublicKey)
-      .setInitialBalance(new Hbar(10))
+      .setInitialBalance(new Hbar(1))
       .execute(client);
     const receipt = await tx.getReceipt(client);
     const newAccountId = receipt.accountId.toString();

@@ -1757,7 +1757,8 @@ function detectURL(input) {
         const instagramPatterns = [
             { regex: /instagram\.com\/reels\/([^/?&]+)/, type: 'reels' },
             { regex: /instagram\.com\/reel\/([^/?&]+)/, type: 'reel' },
-            { regex: /instagram\.com\/p\/([^/?&]+)/, type: 'post' }
+            { regex: /instagram\.com\/p\/([^/?&]+)/, type: 'post' },
+            { regex: /instagram\.com\/[^/]+\/reel\/([^/?&]+)/, type: 'reel' } // NEW: /{USERNAME}/reel/{REEL_ID}/
         ];
 
         const instagramMatch = instagramPatterns.find(pattern => {

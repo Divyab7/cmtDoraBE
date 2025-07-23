@@ -216,11 +216,12 @@ async function saveBucket(req, res) {
         let contractTxStatus = null;
         if (nftAddress && ipfsMetadata && ipfsMetadata.properties && Array.isArray(ipfsMetadata.properties.buckets)) {
             try {
-                const contractId = "0.0.5138175";
-                const topicId = "0.0.5138179";
+                // const contractId = "0.0.5138175"; //testnet
+                const contractId = "0.0.9423343";
+                // const topicId = "0.0.5138179";
                 // Get user's Hedera account info
                 const userAccount = user.hedera || {};
-                const client = Client.forTestnet();
+                const client = Client.forMainnet();
                 client.setOperator(userAccount.accountId, PrivateKey.fromString(userAccount.privateKey || userAccount.accountPvtKey));
 
                 // Prepare bucket details from metadata
@@ -252,13 +253,13 @@ async function saveBucket(req, res) {
                 contractTxStatus = receipt.status.toString();
 
                 // Send topic message
-                const sendResponse = await new TopicMessageSubmitTransaction({
-                    topicId: topicId,
-                    message: `${nftAddress} is added to bucketlist`,
-                }).execute(client);
-                const getReceipt = await sendResponse.getReceipt(client);
-                const transactionStatus = getReceipt.status.toString();
-                console.log("The message transaction status " + transactionStatus);
+                // const sendResponse = await new TopicMessageSubmitTransaction({
+                //     topicId: topicId,
+                //     message: `${nftAddress} is added to bucketlist`,
+                // }).execute(client);
+                // const getReceipt = await sendResponse.getReceipt(client);
+                // const transactionStatus = getReceipt.status.toString();
+                // console.log("The message transaction status " + transactionStatus);
             } catch (err) {
                 console.error('Error in contract bucket linking:', err);
                 contractTxStatus = 'FAILED';

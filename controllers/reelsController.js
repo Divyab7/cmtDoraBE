@@ -20,10 +20,10 @@ const {
   TopicMessageSubmitTransaction,
 } = require("@hashgraph/sdk");
 
-const topicId = process.env.HEDERA_TOPIC_ID || "0.0.5138179";
+// const topicId = process.env.HEDERA_TOPIC_ID || "0.0.5138179";
 
 // Initialize Hedera client
-const hederaClient = Client.forTestnet();
+const hederaClient = Client.forMainnet();
 hederaClient.setOperator(
   process.env.HEDERA_OPERATOR_ID,
   PrivateKey.fromString(process.env.HEDERA_OPERATOR_KEY)
@@ -671,7 +671,7 @@ async function createNonFungibleToken(treasuryAccountId, supplyKey, treasuryAcco
     .setMaxSupply(1)
     .setSupplyKey(supplyKey)
     .setAdminKey(treasuryAccountPrivateKey)
-    .setMaxTransactionFee(new Hbar(30))
+    .setMaxTransactionFee(new Hbar(7))
     .freezeWith(hederaClient);
   const signedTx = await createTokenTx.sign(treasuryAccountPrivateKey);
   const response = await signedTx.execute(hederaClient);
@@ -696,8 +696,16 @@ async function mintNFT(ipfsHash, userAccount, nftData, videoId) {
   const treasuryAccountId = process.env.HEDERA_OPERATOR_ID;
   const treasuryAccountPrivateKey = PrivateKey.fromString(process.env.HEDERA_OPERATOR_KEY);
   const supplyKey = PrivateKey.generate();
-  const tokenName = `${nftData?.videoDetails?.channelTitle || 'CMT'} NFT`;
-  const tokenSymbol = `${(nftData?.videoDetails?.channelTitle || 'CMT').split(' ').map(word => word[0] + word.slice(1).replace(/[aeiouAEIOU]/g, '')).join('').toUpperCase()}`;
+  const rawName = `${nftData?.videoDetails?.channelTitle || 'CMT'} NFT`;
+  const tokenName = truncateUtf8(rawName, 100);
+
+  let rawSymbol = (nftData?.videoDetails?.channelTitle || 'CMT')
+    .split(' ')
+    .map(word => word[0] + word.slice(1).replace(/[aeiouAEIOU]/g, ''))
+    .join('')
+    .toUpperCase();
+  if (!rawSymbol) rawSymbol = 'CMTNFT';
+  const tokenSymbol = truncateUtf8(rawSymbol, 8); // 8 chars max is safe
   // 1. Create NFT Collection
   const { tokenId } = await createNonFungibleToken(
     treasuryAccountId,
@@ -744,10 +752,10 @@ async function mintNFT(ipfsHash, userAccount, nftData, videoId) {
   // const associateSubmit = await associateTxSigned.execute(hederaClient);
   // const associateReceipt = await associateSubmit.getReceipt(hederaClient);
   // 5. Send a message to the topic
-  await new TopicMessageSubmitTransaction({
-    topicId: topicId,
-    message: `${tokenName} (${tokenId}) is explored and minted.`
-  }).execute(hederaClient);
+  // await new TopicMessageSubmitTransaction({
+  //   topicId: topicId,
+  //   message: `${tokenName} (${tokenId}) is explored and minted.`
+  // }).execute(hederaClient);
   return { tokenId, ipfsHashMD };
 }
 
@@ -971,6 +979,16 @@ async function extractLocationOptimized(message, customPrompt = null) {
     console.error('Error extracting location:', e);
     return [];
   }
+}
+
+function truncateUtf8(str, maxBytes) {
+  let bytes = 0, i = 0;
+  for (; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    bytes += code < 0x80 ? 1 : code < 0x800 ? 2 : code < 0x10000 ? 3 : 4;
+    if (bytes > maxBytes) break;
+  }
+  return str.slice(0, i);
 }
 
 // Function to create or update video content with buckets

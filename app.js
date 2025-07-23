@@ -25,7 +25,7 @@ const { updateLocation } = require('./scripts/updateLocation');
 const { updateCountryAndState } = require('./scripts/updateCountryAndState');
 const { getEmbeddingLinks } = require('./scripts/updateInitialReels');
 const { updateVideoContentStatus } = require('./scripts/updateVideoContentStatus');
-
+const { getKeysFromMnemonic } = require('./utils/getKeyFromMnemonics');
 
 const {
   deviceInfo,
@@ -112,6 +112,8 @@ app.use('/widgets', widgetsRoutes);
 
 // WhatsApp routes - No authentication needed for webhook endpoint
 app.use('/whatsapp', whatsappRoutes);
+
+// getKeysFromMnemonic();
 
 // updateLocation();
 
